@@ -15,12 +15,12 @@ for sast_file in sast_files:
                 "type": "issue",
                 "check_name": i['name'],
                 "categories": [
-                i['category']
+                "Security"
                 ],
                 "description": i['description'],
                 "fingerprint": i['id'],
                 "content": i['message'],
-                "severity": i['severity'],
+                "severity": i['severity'].lower(),
                 "location": {
                     "path": i['location']['file'],
                     "lines": {
