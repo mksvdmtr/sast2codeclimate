@@ -11,15 +11,26 @@ for sast_file in sast_files:
         sast_json = json.load(sast_infile)
 
     for i in sast_json['vulnerabilities']:
+
+        severity = 'info'
+
+        match i['severity']:
+            case 'Low':
+                severity = 'minor'
+            case 'Medium':
+                severity = 'major'
+            case 'High' | 'Critical':
+                severity = 'critical'
+
         issue_object = {
                 "type": "issue",
                 "check_name": i['name'],
                 "categories": [
                 "Security"
                 ],
-                "description": i['description'],
+                "description": i['description'] + ' | CVE: '  + i['cve'],
                 "fingerprint": i['id'],
-                "severity": i['severity'].lower(),
+                "severity": severity,
                 "location": {
                     "path": i['location']['file'],
                     "lines": {
