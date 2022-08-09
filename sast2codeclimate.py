@@ -19,7 +19,6 @@ for sast_file in sast_files:
                 ],
                 "description": i['description'],
                 "fingerprint": i['id'],
-                "content": i['message'],
                 "severity": i['severity'].lower(),
                 "location": {
                     "path": i['location']['file'],
