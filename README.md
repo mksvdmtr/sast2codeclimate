@@ -2,6 +2,9 @@
 
 ### SAST example:
 ```
+include:
+  - template: Security/SAST.gitlab-ci.yml
+
 sast:
   stage: test
   after_script:
